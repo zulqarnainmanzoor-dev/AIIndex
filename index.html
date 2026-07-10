@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Base Encoding and Responsive Viewports -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Document Title (Will be updated dynamically by React SEO Controller) -->
+    <title>AIIndex | Global AI Comparison, Pricing, and Benchmark Platform</title>
+    
+    <!-- Meta Theme Color for Android & iOS address bars -->
+    <meta name="theme-color" content="#2563eb" />
+
+    <!-- Resource Preconnects for Core Web Vitals Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+
+    <!-- Standard Favicon Pack -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=32&auto=format&fit=crop" />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=16&auto=format&fit=crop" />
+    
+    <!-- Apple Touch Icons for iOS Pinning -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=180&auto=format&fit=crop" />
+
+    <!-- PWA Manifest & Browserconfig -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+
+    <!-- Dynamic SEO and Meta Descriptions will be injected into this head by the React SEO controller -->
+
+    <!-- ==========================================
+         GOOGLE ANALYTICS INTEGRATION PLACEHOLDER
+         ========================================== -->
+    <!-- To activate: Replace G-XXXXXXXXXX with your actual GA4 Measurement ID in your env vars -->
+    <script>
+      (function() {
+        // Safe check to avoid blocking preview loops
+        const gaId = window.__GA_MEASUREMENT_ID__ || 'G-MEASUREMENT-PLACEHOLDER';
+        if (gaId && gaId !== 'G-MEASUREMENT-PLACEHOLDER') {
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+          document.head.appendChild(script);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', gaId, { 'anonymize_ip': true });
+        }
+      })();
+    </script>
+
+    <!-- ==========================================
+         GOOGLE ADSENSE INTEGRATION
+         ========================================== -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3035416217056603" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <!-- Accessibility Skiplink for WCAG 2.2 AA (Allows screenreaders to bypass navbar) -->
+    <a href="#main-content-focus" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-blue-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-xl focus:shadow-lg focus:z-50 font-sans text-sm font-bold">
+      Skip to main content
+    </a>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

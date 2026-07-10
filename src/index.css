@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-gray-50: #F8FAFC;
+  --color-gray-100: #E5E7EB;
+}
+
+body {
+  background-color: #F9FAFB;
+  color: #1F2937;
+  font-family: var(--font-sans);
+}
+
+/* Glassmorphism theme elements from Sleek Interface */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.sleek-border {
+  border-color: #E5E7EB;
+}
+
+/* Auto-apply sleek shadow and subtle border transitions to all card components */
+.rounded-2xl.border, .rounded-xl.border {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rounded-2xl.border:hover, .rounded-xl.border:hover {
+  border-color: #BFDBFE !important; /* light blue border on hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+/* Trending models and card hover effects from Sleek Interface */
+.stat-card:hover, .sleek-card:hover {
+  border-color: #2563EB !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.05);
+}
+
+.trending-item-hover:hover {
+  border-color: #BFDBFE !important; /* hover:border-blue-200 */
+  background-color: #F8FAFC;
+}
+
+/* Print Styles for Model Comparison */
+@media print {
+  /* Hide overall layout elements except comparison */
+  html, body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Show comparison-view-module and its children */
+  #comparison-view-module,
+  #comparison-view-module * {
+    visibility: visible !important;
+  }
+
+  /* Force comparison to take full printed page */
+  #comparison-view-module {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
+
+  /* Specific elements to hide in print mode */
+  .no-print,
+  #compare-selectors,
+  .no-print-btn,
+  button,
+  textarea {
+    display: none !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  /* Keep table borders visible and clean */
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    margin-top: 15px !important;
+    margin-bottom: 25px !important;
+    page-break-inside: auto !important;
+  }
+
+  tr {
+    page-break-inside: avoid !important;
+    page-break-after: auto !important;
+  }
+
+  th, td {
+    border: 1px solid #E2E8F0 !important;
+    padding: 8px 12px !important;
+    color: #1A202C !important;
+    background-color: transparent !important;
+  }
+
+  th {
+    font-weight: bold !important;
+    background-color: #F8FAFC !important;
+  }
+
+  /* Un-scroll wrapper */
+  #compare-specs-grid {
+    border: 1px solid #E2E8F0 !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    max-height: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* Clean up analyst panel for paper */
+  #gemini-analyst-panel {
+    border: 1px solid #CBD5E1 !important;
+    background: #F8FAFC !important;
+    padding: 20px !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Force background colors to print on browsers */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Adjust typography */
+  h2 {
+    font-size: 20pt !important;
+    margin-bottom: 5px !important;
+  }
+
+  h3 {
+    font-size: 14pt !important;
+    margin-top: 15px !important;
+    margin-bottom: 10px !important;
+  }
+
+  p {
+    font-size: 10pt !important;
+    color: #4A5568 !important;
+  }
+
+  /* Custom header shown only on print */
+  .print-only-header {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    border-bottom: 2px solid #2563EB !important;
+    padding-bottom: 15px !important;
+    margin-bottom: 25px !important;
+  }
+
+  .print-only-header .logo-icon {
+    width: 40px !important;
+    height: 40px !important;
+    background: #2563EB !important;
+    color: white !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: bold !important;
+    font-size: 20pt !important;
+  }
+
+  /* Custom footer shown only on print */
+  .print-only-footer {
+    display: block !important;
+    border-top: 1px solid #E2E8F0 !important;
+    padding-top: 15px !important;
+    margin-top: 40px !important;
+    text-align: center !important;
+  }
+
+  .print-disclaimer {
+    font-size: 8pt !important;
+    color: #718096 !important;
+    line-height: 1.4 !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* Ensure print-only elements are hidden on screen */
+.print-only-header,
+.print-only-footer {
+  display: none;
+}
+
+

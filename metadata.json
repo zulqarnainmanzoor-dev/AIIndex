@@ -1,0 +1,6 @@
+{
+  "name": "AIIndex: Global Directory & Comparison Hub",
+  "description": "Discover the best AI tools, compare models side-by-side, read expert guides, analyze benchmarks, and calculate API costs in the ultimate directory for artificial intelligence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
