@@ -438,7 +438,7 @@ export default function App() {
     const modelBObj = MODELS.find((m) => m.id === compareModelB);
 
     try {
-      const response = await fetch("/api/groq/compare", {
+      const response = await fetch("/api/compare", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

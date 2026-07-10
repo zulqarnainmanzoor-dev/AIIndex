@@ -1,15 +1,10 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "server.ts",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "server.ts"
-    }
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/api/groq/compare", "destination": "/api/compare" },
+    { "source": "/api/news", "destination": "/api/news" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
