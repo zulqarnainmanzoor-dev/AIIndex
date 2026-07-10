@@ -39,7 +39,7 @@ async function startServer() {
   const COMPARE_CACHE_TTL = 1000 * 60 * 60 * 24; // 24 hours for comparisons
 
   // API Route: AI Comparison Assistant
-  app.post("/api/gemini/compare", async (req, res) => {
+  app.post("/api/groq/compare", async (req, res) => {
     try {
       const { modelA, modelB, customQuery } = req.body;
       const apiKey = process.env.GROQ_API_KEY;

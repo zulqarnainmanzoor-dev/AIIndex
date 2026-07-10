@@ -210,9 +210,9 @@ export default function App() {
   const [compareModelB, setCompareModelB] = useState<string>(MODELS[1].id);
   const [highlightDifferences, setHighlightDifferences] = useState<boolean>(false);
   const [compareQuery, setCompareQuery] = useState<string>("");
-  const [geminiAnalysis, setGeminiAnalysis] = useState<string>("");
-  const [geminiLoading, setGeminiLoading] = useState<boolean>(false);
-  const [geminiError, setGeminiError] = useState<string>("");
+  const [groqAnalysis, setGroqAnalysis] = useState<string>("");
+  const [groqLoading, setGroqLoading] = useState<boolean>(false);
+  const [groqError, setGroqError] = useState<string>("");
   const [expandedRowLabel, setExpandedRowLabel] = useState<string | null>(null);
   const [copiedRowLabel, setCopiedRowLabel] = useState<string | null>(null);
   const [favorites, setFavorites] = useState<string[]>(() => {
@@ -429,16 +429,16 @@ export default function App() {
   // Keep search box active list
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
 
-  const handleGeminiCompare = async () => {
-    setGeminiLoading(true);
-    setGeminiError("");
-    setGeminiAnalysis("");
+  const handleGroqCompare = async () => {
+    setGroqLoading(true);
+    setGroqError("");
+    setGroqAnalysis("");
 
     const modelAObj = MODELS.find((m) => m.id === compareModelA);
     const modelBObj = MODELS.find((m) => m.id === compareModelB);
 
     try {
-      const response = await fetch("/api/gemini/compare", {
+      const response = await fetch("/api/groq/compare", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -454,12 +454,12 @@ export default function App() {
       if (!response.ok) {
         throw new Error(data.error || "An error occurred during verification.");
       }
-      setGeminiAnalysis(data.analysis);
+      setGroqAnalysis(data.analysis);
     } catch (err: any) {
       console.error(err);
-      setGeminiError(err.message || "Failed to reach AI analyst. Please try again.");
+      setGroqError(err.message || "Failed to reach AI analyst. Please try again.");
     } finally {
-      setGeminiLoading(false);
+      setGroqLoading(false);
     }
   };
 
@@ -3030,7 +3030,7 @@ export default function App() {
                       </div>
                       <div>
                         <h3 className="font-sans font-extrabold text-base sm:text-lg text-gray-900 tracking-tight">
-                          AIIndex Analyst (Powered by Gemini)
+                          AIIndex Analyst (Powered by Groq)
                         </h3>
                         <p className="text-xs text-gray-500">
                           Query our automated agent with customized topics or run standard evaluations.
@@ -3048,11 +3048,11 @@ export default function App() {
                       />
 
                       <button
-                        onClick={handleGeminiCompare}
-                        disabled={geminiLoading}
+                        onClick={handleGroqCompare}
+                        disabled={groqLoading}
                         className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-6 py-3.5 rounded-xl cursor-pointer disabled:bg-gray-300 transition-colors shadow-md shadow-blue-100 flex items-center justify-center gap-2"
                       >
-                        {geminiLoading ? (
+                        {groqLoading ? (
                           <>
                             <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                             Consulting Expert Database...
@@ -3066,30 +3066,30 @@ export default function App() {
                       </button>
                     </div>
 
-                    {/* Gemini Response Panel */}
+                    {/* Groq Response Panel */}
                     <AnimatePresence>
-                      {(geminiAnalysis || geminiLoading || geminiError) && (
+                      {(groqAnalysis || groqLoading || groqError) && (
                         <motion.div
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
                           className="bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm mt-4 space-y-4"
                         >
-                          {geminiLoading ? (
+                          {groqLoading ? (
                             <div className="space-y-3 animate-pulse">
                               <div className="h-4 bg-gray-200 rounded w-1/4" />
                               <div className="h-3 bg-gray-100 rounded w-full" />
                               <div className="h-3 bg-gray-100 rounded w-5/6" />
                               <div className="h-3 bg-gray-100 rounded w-full" />
                             </div>
-                          ) : geminiError ? (
+                          ) : groqError ? (
                             <div className="text-red-500 text-xs flex items-center gap-2">
                               <AlertCircle className="w-5 h-5 shrink-0" />
-                              <span>{geminiError}</span>
+                              <span>{groqError}</span>
                             </div>
                           ) : (
-                            <div id="gemini-markdown-output" className="prose prose-sm max-w-none text-xs text-gray-700 leading-relaxed whitespace-pre-wrap">
-                              {geminiAnalysis}
+                            <div id="groq-markdown-output" className="prose prose-sm max-w-none text-xs text-gray-700 leading-relaxed whitespace-pre-wrap">
+                              {groqAnalysis}
                             </div>
                           )}
                         </motion.div>
